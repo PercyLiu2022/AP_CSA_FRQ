@@ -1,0 +1,66 @@
+import java.util.Arrays;
+
+public class TokenPass
+{
+	
+	private int[] board;
+	
+	private int currentPlayer;
+	
+	/** Creates the board array to be of size playerCount and fills it with
+	* random integer values from 1 to 10, inclusive. Initializes currentPlayer to a
+	* random integer value in the range between 0 and playerCount-1, inclusive.
+	* @param playerCount the number of players
+	*/
+	public TokenPass(int playerCount)
+	{
+		board = new int[playerCount]; 
+		
+		currentPlayer = (int) ((Math.random() * (((playerCount-1) - 0) + 1)) + 0); //index of currentPlayer
+		
+		int x = (int) ((Math.random() * ((10 - 1) + 1)) + 1); //randomizer
+		
+		for(int i = 0; i < playerCount; i++) { //loops as many players there are
+				board[i] = x; //board at i is equal to random int
+		}
+	}
+	
+	/** Distributes the tokens from the current player's position one at a time to each player in
+	* the game. Distribution begins with the next position and continues until all the tokens
+	* have been distributed. If there are still tokens to distribute when the player at the
+	* highest position is reached, the next token will be distributed to the player at position 0.
+	* Precondition: the current player has at least one token.
+	* Postcondition: the current player has not changed.
+	*/
+	public void distributeCurrentPlayerTokens()
+	{
+		int amount = board[currentPlayer]; //how many tokens currentPlayer has
+		int add = 0; //adds when the loop goes to current player
+		int index = currentPlayer; //index of currentPlayer
+		
+			for(int i = index + 1; i < board.length; i++) { //will start at currentPlayer index +1 and run till last element -1
+				if(i == board.length-1 && amount > 0) { // if i is equal to the last elent
+					board[i]++; //board at i will add 1
+					amount--; //amount will subtract by 1
+					i = 0; //start loop at 0
+				}
+				
+				if(i != index && amount > 0) {
+					board[i]++; //board at i will add 1
+					amount--; //amount will subtract by 1
+				}
+				
+				if(i == index && amount > 0) { //if i is at currentplayer index
+					add++; //add 1 to int add
+					amount--; //subtract 1 from amount
+				}
+				
+				if(amount == 0) { //if amount is 0
+					break; //stop the loop
+				}
+				board[currentPlayer] = add; //currentPlayer will equal to add
+			}
+	}
+	
+	// There may be instance variables, constructors, and methods that are not shown.
+}
