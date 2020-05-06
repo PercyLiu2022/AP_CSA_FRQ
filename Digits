@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+
+public class Digits
+{
+
+	
+	/** The list of digits from the number used to construct this object.
+	* The digits appear in the list in the same order in which they appear in the original number.
+	*/
+	private ArrayList<Integer> digitList;
+	
+	/** Constructs a Digits object that represents num.
+	* Precondition: num >= 0
+	*/
+	public Digits(int num)
+	{
+		this.digitList = new ArrayList<Integer>(); //intialize ArrayList in constructor
+		
+		int myNum = num; //myNum is equal to num's number
+		
+		if(myNum == 0) { //if num is 0
+			this.digitList.add(0); //add 0 to ArrayList
+		}
+		
+		while(myNum > 0) { // while myNum is not 0
+			int digit = myNum % 10; //digit we want is the remainder of num / 10
+			this.digitList.add(0, digit); //add digit to ArrayList at position 0
+			myNum /= 10; //divide mynum by 10 to remove last space
+		}
+	}
+
+	
+	/** Returns true if the digits in this Digits object are in strictly increasing order;
+	* false otherwise.
+	*/
+	public boolean isStrictlyIncreasing()
+	{
+		int add = 0; //gets numbers added to it
+		
+		for(int i = 0; i < digitList.size()-1; i++) {
+			if(digitList.get(i) < digitList.get(i+1)) { //if number at i is smaller than number at i+1
+				add++; //add 1 to 
+			}
+		}
+		
+		return add == digitList.size()-1; //returns boolean if add is equal to digitList's size -1
+	}
+	
+}
