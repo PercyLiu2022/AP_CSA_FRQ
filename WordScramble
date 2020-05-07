@@ -2,7 +2,7 @@ import java.awt.List;
 
 public class WordScramble {
 	
-	
+	//HARD WAY (EASY WAY AT THE BOTTMOM)
 	public static String scrambleWord(String word) {
 		String myWord = word;//declare myWord as word
 		
