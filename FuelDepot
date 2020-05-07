@@ -1,0 +1,58 @@
+public class FuelDepot
+{
+	/** The robot used to move the filling mechanism */
+	private FuelRobot filler;
+	
+	/** The list of fuel tanks */
+	private List<FuelTank> tanks;
+	
+	/** Determines and returns the index of the next tank to be filled.
+	* @param threshold fuel tanks with a fuel level £ threshold may be filled
+	* @return index of the location of the next tank to be filled
+	* Postcondition: the state of the robot has not changed
+	*/
+	public int nextTankToFill(int threshold)
+	{
+		int minSoFar = tanks.get(0); //takes the value of min
+		int min = 0; //takes the index of min
+		for(int i = 0; i < tanks.size(); i++) { //loops through entire loop
+			if(tanks.get(i).getFuelLevel() < minSoFar.getFuelLevel()) { //if tanks fuel level at i i smaller than minSoFar's fuel level
+				minSoFar = tanks.get(i); //swap out minSoFar with a new min
+				min = i; //change index of min
+			}//if
+		}//for loop
+		
+		if(minSoFar.getFuelLevel() <= threshold) { //if minSoFar's fuel level is smaller or equal to threshold
+			return min; //return min
+		} else { //if it's not smaller or equal 
+			return filler.getCurrentIndex(); //return fillters index
+		}
+	}
+	
+	/** Moves the robot to location locIndex.
+	* @param locIndex the index of the location of the tank to move to
+	* Precondition: 0 £ locIndex < tanks.size()
+	* Postcondition: the current location of the robot is locIndex
+	*/
+	public void moveToLocation(int locIndex)
+	{
+			//if it's facing right and locIndex is greater than fillters index 
+			if(filler.isFacingRight() == true && locIndex > filler.getCurrentIndex()) { 
+				filler.moveForward((filler.getCurrentIndex() - locIndex)); //move forward 
+			} 
+			//if it's facing left and locIndex is greater than fillters index
+			if(filler.isFacingRight() == false && locIndex > filler.getCurrentIndex()){
+				filler.changeDirection(); //change direction
+				filler.moveForward((filler.getCurrentIndex() - locIndex));//move forward 
+			} 
+			//if it's facing right and locIndex is smaller than fillters index
+			if(filler.isFacingRight() == true && locIndex < filler.getCurrentIndex()) {
+				filler.changeDirection(); //change direction
+				filler.moveForward((filler.getCurrentIndex() - locIndex));//move forward 
+			} 
+			//if it's facing left and locIndex is smaller than fillters index
+			if(filler.isFacingRight() == false && locIndex < filler.getCurrentIndex()) {
+				filler.moveForward((filler.getCurrentIndex() - locIndex));//move forward 
+			} 		
+	}
+}
