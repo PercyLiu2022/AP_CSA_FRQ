@@ -41,16 +41,16 @@ public class Phrase
 	* Postcondition: the current phrase is not modified.
 	*/
 	public int findLastOccurrence(String str) {
-		int count = 0;
-		for(int i = 0; i < str.length() - str.length(); i++) {
-			if(str.substring(i, str.length()).equals(str)) {
-				count++;
+		int count = 0;  //adds 1 to count
+		for(int i = 0; i < str.length() - str.length(); i++) { //loops from 0 to end - the length of str
+			if(str.substring(i, str.length()).equals(str)) { // if substring == str
+				count++; //add 1 to count
 			}
 		}
-		if(findNthOccurrence(str, count) == -1) {
-			return -1;
-		} else {
-			return findNthOccurrence(str, count);
+		if(findNthOccurrence(str, count) == -1) { //if findNthOccurrence str when it comes up at cout # is equal to -1
+			return -1; //return -1 
+		} else {//if it is not -1
+			return findNthOccurrence(str, count); //return the index of str at last occurrence
 		}
 	}
 	
