@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Phrase
+{
+	private String currentPhrase;
+	
+	/** Constructs a new Phrase object. */
+	public Phrase(String p)
+	{ currentPhrase = p; }
+	
+	/** Returns the index of the nth occurrence of str in the current phrase;
+	* returns -1 if the nth occurrence does not exist.
+	* Precondition: str.length() > 0 and n > 0
+	* Postcondition: the current phrase is not modified.
+	*/
+	public int findNthOccurrence(String str, int n)
+	{ /* implementation not shown */ }
+	
+	/** Modifies the current phrase by replacing the nth occurrence of str with repl.
+	* If the nth occurrence does not exist, the current phrase is unchanged.
+	* Precondition: str.length() > 0 and n > 0
+	*/
+	public void replaceNthOccurrence(String str, int n, String repl)
+	{
+		int location = findNthOccurrence(str, n); //where str is at a specific location
+		
+		if(location != -1) { //if location is avaliable
+			int len = str.length(); //length of str to replace 
+			String first = str.substring(0, location); //first half of the string
+			String last = str.substring(location + len); //second half of the string
+			
+			currentPhrase = first + repl + last; //currentPhrase is equal to first + replaced str + last
+		} else { //if location is not avaliable
+			currentPhrase = str; //currenPhrase is equal to the str
+		}
+	}
+	
+	/** Returns the index of the last occurrence of str in the current phrase;
+	* returns -1 if str is not found.
+	* Precondition: str.length() > 0
+	* Postcondition: the current phrase is not modified.
+	*/
+	public int findLastOccurrence(String str) {
+		int count = 0;
+		for(int i = 0; i < str.length() - str.length(); i++) {
+			if(str.substring(i, str.length()).equals(str)) {
+				count++;
+			}
+		}
+		if(findNthOccurrence(str, count) == -1) {
+			return -1;
+		} else {
+			return findNthOccurrence(str, count);
+		}
+	}
+	
+	/** Returns a string containing the current phrase. */
+	public String toString()
+	{ return currentPhrase; }
+}
