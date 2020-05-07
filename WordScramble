@@ -1,0 +1,34 @@
+import java.awt.List;
+
+public class WordScramble {
+	
+	
+	public static String scrambleWord(String word) {
+		String myWord = word;//declare myWord as word
+		
+		for(int i = 0; i < myWord.length()-1; i++) {
+			String as = myWord.substring(i, i+2);
+			if(as.equals("AA")) { //if subtring i to i+2 is equal to "AA"
+				myWord.replace(myWord.substring(i+1, i+2), myWord.substring(i+2, i+3)); //replace the 2nd A with the 3rd letter
+				myWord.replace(myWord.substring(i+2, i+3), "A");//replace the 3rd letter with an "A"
+				i++; //move forward
+			}//if
+			
+			if(myWord.charAt(i) == 'A' && myWord.charAt(i+1) != 'A') { //if character at i is "A" and character at i+1 is not "A"
+				myWord.replace(myWord.substring(i, i+1), myWord.substring(i+1, i+2)); //replace first character with second character
+				myWord.replace(myWord.substring(i+1, i+2), "A"); //replace 2nd character with "A"
+			}//if
+		}//For Loop
+		return myWord; //return word
+	}//Method
+	
+	public static void scrambleOrRemove(List<String> wordList) {
+		for(int i = 0; i < wordList.size(); i++) { //loops through the entire wordList
+			if(scrambleWord(wordList.get(i)) == wordList.get(i)) { //if scrambled word is equal to the word in wordList
+				wordList.remove(i); //remove word at i 
+				i--; //go back one
+			} //if
+		}//for loop
+	}//method
+	
+}//end
