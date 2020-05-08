@@ -1,0 +1,19 @@
+import java.util.List;
+
+public class StringFormatter {
+	
+	public static int totalLetters(List<String> wordList) {
+		int letters = 0; //counts letters size
+		for(int i = 0; i < wordList.size(); i++) { //loops entire wordList size
+			letters = letters + wordList.get(i).length(); //adds all letters size together
+		}//loop
+		return letters; //returns letter
+	}
+	
+	public static int basicGapWidth(List<String> wordList, int formattedLen)
+	{
+		int gaps = wordList.size() - 1; //gets the length of wordList
+		int spaces = formattedLen - totalLetters(wordList); //find out how many spaces 
+		return spaces / gaps; // //returns gap
+	}
+}
