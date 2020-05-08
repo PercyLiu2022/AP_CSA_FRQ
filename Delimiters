@@ -34,7 +34,26 @@ public class Delimiters
 	* Precondition: delimiters contains only valid open and close delimiters.
 	*/
 	public boolean isBalanced(ArrayList<String> delimiters)
-	{ /* to be implemented in part (b) */ }
+	{
+		int close = 0; //counts how many close there aree
+		int open = 0; //counts how many open there are 
+		boolean bool = true; //can cahnge in the for loop
+		for(int i = 0; i < delimiters.size(); i++) { //loops through entire delimiters arraylist
+			if(delimiters.get(i) == this.closeDel) { //if delimiters element at i is equal to closeDel
+				close++; //add 1 to close
+			}
+			
+			if(delimiters.get(i) == this.openDel) { //if delimiters element at i is equal to openDel
+				open++; //add 1 to open
+			}
+			
+			if(i > 0 && close > open) { //if i is greater than 0 AND close is bigger than open
+				return false; //bool is false
+			}
+		}//loop
+		
+		return (close == open) && (bool); //if close is equal to open AND bool is true or false
+	}
 	
 	// There may be instance variables, constructors, and methods that are not shown.
 }
