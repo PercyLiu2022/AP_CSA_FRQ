@@ -1,28 +1,49 @@
 public class CheckDigit
 {
-	/** Returns the check digit for num
-	* Precondition: The number of digits in num is between one and
-	six, inclusive.
-	* num >= 0
-	*/
-	public static int getCheck(int num)
-	{ /* implementation not shown */ }
 	
-	/** Returns true if numWithCheckDigit is valid, or false
-	otherwise,
-	* as described in part (a)
-	* Precondition: The number of digits in numWithCheckDigit
-	is
-	* between two and seven, inclusive.
-	* numWithCheckDigit >= 0
-	*/
-	public static boolean
-	isValid(int numWithCheckDigit)
-	{
-		if(numWithCheckDigit % 10 == getCheck(numWithCheckDigit)) { //if last digit is check's number
-			return true; //return true
-		}
+ /** Returns the check digit for num, as described in part (a).
+* Precondition: The number of digits in num is between one and
+* six, inclusive.
+* num >= 0
+*/
+public static int getCheck(int num)
+{
+	int sum = 0; //adds everything 
+	for(int i = 0; i < getNumberOfDigits(num); i++) {//loops how many digits the num has
+		sum += (getDigit(num, i) * (7-i)); //sum = sum + digit number times 7-i (i will change every loop by 1)
+	}
+	return sum % 10; // % 10 to get last digit
+}
+
+/** Returns true if numWithCheckDigit is valid, or false
+* otherwise, as described in part (b).
+* Precondition: The number of digits in numWithCheckDigit
+* is between two and seven, inclusive.
+* numWithCheckDigit >= 0
+*/
+public static boolean isValid(int numWithCheckDigit)
+{
+	if(numWithCheckDigit % 10 == getCheck(numWithCheckDigit)) { //if last digit is check's number
+		return true; //return true
+	}else {
 		return false; //return false otherwise
-	
-	//There may be variables and methods not shown.
+	}
+}
+
+/** Returns the number of digits in num. */
+public static int getNumberOfDigits(int num)
+{
+/* implementation not shown */
+}
+
+/** Returns the nthdigit of num.
+* Precondition: n >= 1 and n <= the number of digits in num
+*/
+public static int getDigit(int num, int n)
+{
+/* implementation not shown */
+}
+
+// There may be instance variables, constructors, and methods not shown.
+
 }
