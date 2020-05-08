@@ -47,7 +47,7 @@ public class Delimiters
 				open++; //add 1 to open
 			}
 			
-			if(i > 0 && close > open) { //if i is greater than 0 AND close is bigger than open
+			if( close > open) { //if close is bigger than open
 				return false; //bool is false
 			}
 		}//loop
