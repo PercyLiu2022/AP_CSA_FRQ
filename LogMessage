@@ -21,9 +21,9 @@ public class LogMessage
 			if(description.contains(keyword) &&  //if it contains keyword AND
 					(description.startsWith(keyword) || description.substring(index - 1, index).equals(" ")) && //if it starts with keyword OR has a space before it
 							(description.endsWith(keyword) || description.substring(index + len, index + len + 1).equals(" "))) { //if it ends with keyword OR has a space after it
-			}//if
 			return true; //returns true
-		return false; //otherwise false
+			}//if
+			return false; //returns false
 	}//method
 	
 	public String getMachineId()
