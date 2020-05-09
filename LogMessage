@@ -18,12 +18,20 @@ public class LogMessage
 	{
 		int len = keyword.length(); //length of keyword
 		int index = description.indexOf(keyword); //dont need an if statment, because if it doenst contain keyword it will return false 
-			if(description.contains(keyword) &&  //if it contains keyword AND
-					(description.startsWith(keyword) || description.substring(index - 1, index).equals(" ")) && //if it starts with keyword OR has a space before it
-							(description.endsWith(keyword) || description.substring(index + len, index + len + 1).equals(" "))) { //if it ends with keyword OR has a space after it
-			return true; //returns true
-			}//if
-			return false; //returns false
+		
+			if(!description.contains(keyword)) { //if it doesnt contain keyword
+				return false; //return false
+			} 
+		
+			if(description.startsWith(keyword) || description.substring(index - 1, index).equals(" ")) { //if it starts with keyword OR has a space before it 
+				return true;
+			}  
+			
+			if(description.endsWith(keyword) || description.substring(index + len, index + len + 1).equals(" ")) {//if it ends with keyword OR has a space after it
+				return true;
+			} 
+			
+			return false; //returns what the outcome is
 	}//method
 	
 	public String getMachineId()
