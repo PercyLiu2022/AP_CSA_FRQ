@@ -1,0 +1,21 @@
+import java.util.List;
+
+public class ClimbingInfo {
+	private List<ClimbInfo> climbList;
+	//part a)
+  	public void addClimb(String peakName, int climbTime) {
+       climbList.add(i, new ClimbInfo(peakName, climbTime)); //add new ClimbInfo at that index
+    }
+    
+  //part b)
+	public void addClimb(String peakName, int climbTime) {
+		for(int i = 0; i < climbList.size(); i++) { //runs through entire climbList array
+			int compare = climbList.get(i).getName().compareTo(peakName); //compare, either it's 0, - or +
+			if(compare <= 0) { //if compare is smaller or equal to 0
+				climbList.add(i, new ClimbInfo(peakName, climbTime)); //add new ClimbInfo at that index
+				return; //stop the method - if it were a break; it would only stop the loop
+			}
+		}
+		climbList.add(climbList.size(), new ClimbInfo(peakName, climbTime)); //if climb was never added to the list, add at the end
+	}
+}
