@@ -1,0 +1,58 @@
+public class FrogSimulation
+	{
+	/** Distance, in inches, from the starting position to the goal. */
+	private int goalDistance;
+	
+	/** Maximum number of hops allowed to reach the goal. */
+	private int maxHops;
+	
+	/** Constructs a FrogSimulation where dist is the distance, in inches, from the starting
+	* position to the goal, and numHops is the maximum number of hops allowed to reach the goal.
+	* Precondition: dist > 0; numHops > 0
+	*/
+	public FrogSimulation(int dist, int numHops)
+	{
+	goalDistance = dist;
+	maxHops = numHops;
+	}
+	
+	/** Returns an integer representing the distance, in inches, to be moved when the frog hops.
+	*/
+	private int hopDistance()
+	{ /* implementation not shown */ }
+	
+	/** Simulates a frog attempting to reach the goal as described in part (a).
+	* Returns true if the frog successfully reached or passed the goal during the simulation;
+	* false otherwise.
+	*/
+	public boolean simulate()
+	{
+		int distance = 0; //adds every distance together
+		for(int i = 1; i <= maxHops; i++) { //runs till maxHops
+			distance += hopDistance(); //adds hopDistance to distance
+			
+			if(distance >= goalDistance) { //if distance is larger or equal to goal
+				return true; //return true
+			}//if
+			if(distance < 0) { //if distance is in the negatives
+				return false; //return false
+			}//if
+		}//loop
+		return false; //after running and its not at the goal distance it will return false
+	}//method
+	
+	/** Runs num simulations and returns the proportion of simulations in which the frog
+	* successfully reached or passed the goal.
+	* Precondition: num > 0
+	*/
+	public double runSimulations(int num)
+	{
+		int count = 0; //adds how many 'true' there are
+		for(int i = 0; i < num; i++) { //starts at 0 ends at num
+			if(simulate() == true) { //if the simulation is true
+				count++; //add 1 to count
+			}//if
+		}//loop
+		return (double) count / (double) num; //count divided by num to get a double
+	}//method
+}//class
