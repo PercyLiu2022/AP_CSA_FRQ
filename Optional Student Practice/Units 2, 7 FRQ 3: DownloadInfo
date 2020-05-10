@@ -1,0 +1,29 @@
+import java.awt.List;
+
+public class DownloadInfo2 {
+	//A
+	public DownloadInfo getDownloadInfo(String title) {
+		int counter = -1; //index where they are equl 
+		for(int i = 0; i < downloadList.size(); i++) { //runs through entire size
+			if(downloadList.get(i).getTitle.equals(title)) { //if downloadList at i's title is equal to titles parameter
+				counter = i; //counter is the index
+			}
+		}
+		if(counter == -1) { //if nothing found
+			return null; //return null
+		} else {//otherwise
+			return downloadList.get(counter); //return the object
+		}
+	}//method
+	
+	//B
+	public void updateDownloads(List<String> titles) {
+		for(int i = 0; i < titles.size(); i++) {//loops through entire titles array
+			if(getDownloadInfo(titles.get(i)) != null) { //if downloadinfo with title at i is not null
+				getDownloadInfo(titles.get(i)).incrementTimesDownloaded(); //increment  1
+			} else { //otherwise
+				downloadList.add(downloadList.size(), new DownloadInfo(titles.get())); //add new Download info to the end
+			}
+		}
+	}
+}
