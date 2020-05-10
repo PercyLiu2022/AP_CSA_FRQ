@@ -1,0 +1,27 @@
+
+public class Mountain {
+	//isIncreasing(int[] array, int stop)
+	//isDecreasing(int[] array, int start)
+	
+	public static int getPeakIndex(int[] array)
+	{
+		int highest = -1; //changes if found, otherwise stays at -1
+		for(int i = 1; i < array.length-1; i++) { //starts at 1 ends at arr length -1
+			if(array[i] > array[i-1] && array[i] > array[i+1]) { //if arr at i is greater than arr at i - 1 AND arr at i is greater than arr at i + 1
+				highest = i; //change number of highest to the index
+			} //if
+		}//for
+		return highest; //return index
+	} //method
+	
+	public static boolean isMountain(int[] array)
+	{
+		int highestIndex = getPeakIndex(array); //highest number of mountain
+			if(getPeakIndex(array) != -1 &&  //if the peak isn't -1
+					isIncreasing(array, highestIndex) == true &&  // AND if it's increasing correctly
+							isDecreasing(array, highestIndex) == true) { // AND if it's decreasing correctly
+				return true; //return true if all of them are true
+			}//if
+		return false; //othersie return false
+	}//method
+}//class
