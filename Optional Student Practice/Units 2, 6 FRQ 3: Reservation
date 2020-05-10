@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+
+public class Reservation {
+	private Reservation[] rooms;
+	
+	private ArrayList waitList;
+	
+	public Reservation requestRoom(String guestName) {
+		for(int i = 0; i < rooms.length; i++) { 
+			if(rooms[i] == null) { //if room is empty
+				rooms[i] = new Reservation(guestName, i); //room at i creates a new object of guest name and index i 
+				return rooms[i]; //returns the room at i
+			} else { //if room isn't empty
+				waitList.add(guestName); //add guestName to waiting list
+				return null;//return null
+			}//if
+		}//loop
+	}//method
+	
+	public Reservation cancelAndReassign(Reservation res){
+	  Reservation newRes = null;  // new reservation will be replaced here
+	  int i = res.getRoomNumber(); //room number of res
+
+	  if (!waitList.isEmpty()){ //if wairList isn't empty
+	    newRes = new Reservation((String)waitList.get(0), i); // make newRes of wait list's name at 0 and room number
+	    waitList.remove(0);  //removes person waiting at 0
+	  } else { //otherwise
+		  rooms[i] = newRes; //room number is equal to null 
+	  }//if
+	  return newRes; //return the new reservation
+	}//method
+}//class
