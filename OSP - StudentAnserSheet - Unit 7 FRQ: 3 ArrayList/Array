@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+
+public class StudentAnserSheet {
+	private ArrayList<String> answers;
+
+	public double getScore(ArrayList<String> key) {
+			int full = 0;//counts how many are correct
+			int wrong = 0; //counts how many are wrong
+			int quest = 0; //counts how many have "?"
+		for(int i = 0; i < answers.size(); i++) {
+			if(answers.get(i).equals("?")) { //if student answer is equal to "?" 
+				quest++; //add 1 to quest
+			}
+			if(answers.get(i).equals(key.get(i))) { //if student answer is correct
+				full++; //add 1 to full
+			}
+			if(!answers.get(i).equals(key.get(i)) && !key.get(i).equals("?")) {//if student answer is wrong and isn't "?"
+				wrong++; //add 1 to wrong
+			}
+			
+			double total = (full) - ((double)wrong * 0.25) + (quest * 0); //full marks minus one fourth of wrong
+			return total; //return the double total
+		}//for
+	}//method
+}
+	
+	public class TestResults{
+		private ArrayList<StudentAnswerSheet> sheets;
+		public String highestScoringStudent(ArrayList<String> key) {
+			ArrayList<Integer> total = new ArrayList<Integer>(); //new arraylist that numbers will be stored in
+			for(int i = 0; i < sheets.size(); i++) {
+				total.add(getScore(sheets.get(i))); //adds score to total
+			}//for loop
+			
+			int maxSoFar = total.get(0); //gets the highest score
+			int index = 0; //gets the index of the highest score 
+			for(j = 0; j < total.size(); j++) { //loops the entire total list
+				if(total.get(j) > maxSoFar) { //if total at j is bigger than maxSoFar
+					maxSoFar = total.get(j); //replace total at j with maxSoFar
+					index = j; //index is at j
+				} //if 
+			}//for loop
+			return sheets.get(index).getName(); //returns the index's with the highest number name
+			
+		}//method
+	}//class
+
