@@ -1,0 +1,10 @@
+//this is a tricky one, i wasn't really able to do b)
+//part a) was hard because of the 'getName()' without anything before it
+public int compareCustomer(Customer other) {
+		int nameCompare = getName().compareTo(other.getName()); //comapring two customers
+		if(nameCompare == 0) { //if the names are equal
+			return getID() - other.getID(); //return ID1 minus ID2
+		} else { //otherwise
+			return nameCompare; //return the comaprison
+		}//if
+	}//method
