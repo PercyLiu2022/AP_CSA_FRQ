@@ -1,0 +1,34 @@
+
+public class StudentRecord {
+	private int[] scores; //contains scores.length values
+	
+	private double average(int first, int last) {
+		double total = 0; //adds all the scores
+		int len = 0; //how much between is
+		for(int i = first; i < (first+last); i++) {
+			total = total + scores[i]; //adds all the scores to total
+			len++; //adds one when looped
+		}//for
+		double average = total / (double)len; //calculates the average
+	
+		return average;
+	}
+	
+	private boolean hasImproved() {
+		int count = 0; //counts if i is smaller than i+1 
+		for(int i = 0; i < scores.length; i++) { // runs through entire scores length
+			if(scores[i] <= scores[i+1]) { //if scores at i is smaller than or equal to scores at scores at i+1
+				count++;
+			}//if
+		}//loop
+		return count == scores.length; //if count is the same length as scores's length 
+	}//method
+	
+	public double finalAverage() {
+		if(hasImproved() == true) { //if it has improved
+			return average(scores.length/2, scores.length); //return start = scores's length /2 till scores length
+		} else { //if it hasn't improved
+			return average(0, scores.length); //return the average
+		}//if
+	}//method
+}//class
