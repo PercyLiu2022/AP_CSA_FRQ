@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class SelfDivisor {
+	public static boolean isSelfDivisor(int number) {
+		ArrayList<Integer> digitList = new ArrayList<Integer>(); //creating an array
+		int myNum = number; // new variable called myNum which is number
+		
+		if(myNum == 0) { //if mynum is 0
+			digitList.add(0); //add 0 to arrayList
+		}//if
+		
+		while (myNum > 0) { //while myNum is greater than 0
+			int digit = myNum % 10; //digit is the last index of a number
+			digitList.add(0, digit); //add digit to arrayList at position 0 
+			myNum /= 10; //divide by 10 to remove last index
+		}//while
+		
+		int count = 0; //counts how many are divisable 
+		for(int i = 0; i < digitList.size(); i++) { //for loop that runs through entire list
+			if((double)number % (double)digitList.get(i) == 0) {  //if number divided by digit at i remainder is 0
+				count++; //adds 1 to count
+			} //if
+		}	//for	
+		return digitList.size() == count; //if all are divisable, return true, otherwise return false
+	}//method
+	
+	public static int[] firstNumSelfDivisors(int start, int num) {
+		int[] digitList = new int[num]; //creating an array with num size
+		int e = 0; //adds 1 if the if statement is true to add number to array
+		for(int i = start; i < (start+num); i++) { //starts at start and ends at start plus num
+			if(isSelfDivisor(start)) { //start changes every loop
+				digitList[e] = i; //add i to array
+				e++; //adds 1 to e when its true
+			}//if
+		}//for		
+		return digitList; //returns the array
+	} //method
+} //class
