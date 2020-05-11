@@ -1,0 +1,18 @@
+	public static String scrambleWord(String word) {
+		String newWord = ""; //newWord to add chars
+		for(int i = 0; i < word.length()-1; i++) {
+			if((word.substring(i, i+1) == "A" && word.substring(i+1, i+2) == "A") ||  //if i is "A" and i+1 is "A"
+					(word.substring(i, i+1) == "A" && word.substring(i+1, i+2) != "A")) { //OR if i is "A" and i+1 is't "A"
+				if(word.substring(i, i+1) == "A" && word.substring(i+1, i+2) == "A"){ ////if i is "A" and i+1 is "A"
+					newWord = newWord + "A" + word.substring(i+2, i+3) + "A"; //add A first, than the 3rd letter, than the an A newWord
+				} else 	if (word.substring(i, i+1) == "A" && word.substring(i+1, i+2) != "A") { //if i is "A" and i+1 is't "A"
+					newWord = newWord + word.substring(i+1, i+2) + "A"; //add 2nd word + "A" to newWord
+				} //else if
+			} else {//if it's non of them
+				newWord = newWord + word.substring(i, i+1); //add 1 to newWord
+			}//else
+		}//for
+		return newWord; //return the newWord
+	}//method
+	
+	
