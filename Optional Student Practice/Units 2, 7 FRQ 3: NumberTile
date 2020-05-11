@@ -1,0 +1,32 @@
+private int getIndexForIt(NumberTile tile) { //returns index where it can fit (checker)
+		if(board.size() == 0) { //if array size is 0
+			return 0; //return 0
+		}
+		
+		if(board.get(0).getLeft() == tile.getRight()) { //if board at 0's left is equal to tiles right
+			return 0; //return the index it was placed
+			}//if
+		if(board.get(board.size()-1).getRight() == tile.getLeft()) { //if board at the end's right is equal to tiles left
+			return board.size(); //return the index it was placed
+			}//if
+		
+		int index = -1; //index of insert
+		for(int i = 0; i < board.size()-1; i++) {
+			if(board.get(i).getRight() == tile.getRight() && board.get(i+1).getLeft() == tile.getRight()) { //check both sides if they are the same as board
+				index = i + 1; //change the index if it was found
+			}
+		}//for
+		return index; //return the index it was placed or not (-1)
+	}//method
+	
+	public boolean insertTile(NumberTile tile) {
+		for(int i = 0; i < 4; i++) {
+			if(getIndexForIt(tile) != -1) { //if index of time is not -1
+				board.add(getIndexForIt(tile), tile); //add tile at index
+				return true;//return true
+			} else { //otherwise
+				tile.rotate(); //rotate
+			}//else		
+			return false;
+		}//loop
+	}//method
