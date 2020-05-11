@@ -1,0 +1,20 @@
+	private ArrayList myList;
+	
+	public int numWordsOfLength(int len) {
+		int count = 0;//adds equal amout of len
+		for(int i = 0; i < myList.size(); i++) { 
+			if(myList.get(i).length() == len) { //if lenght of i is equal to len
+				count++; //adds 1 to count 
+			}//if
+		}//for
+		return count; //returns count
+	}//method
+	
+	public void removeWordsOfLength(int len) { //no return
+		for(int i = 0; i < myList.size(); i++) { 
+			if(myList.get(i).length() == len) { //if lenght of i is equal to len
+				myList.remove(i); //removes i 
+				i--; //goes back 1
+			}//if
+		}//for
+	}//method
