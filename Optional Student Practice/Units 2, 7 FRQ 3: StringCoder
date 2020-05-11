@@ -1,0 +1,22 @@
+	public String decodeString(ArrayList<StringPart> parts) {
+		String newWord = "";
+		for(int i = 0; i < parts.size(); i++) {
+			int start = parts.get(i).getStart(); //the start of the part at i
+			newWord = newWord + masterString.substring(start, start+ parts.getLength()); //a substring of mesterStrin between start and end
+		}//for
+		return newWord; //returns the words combined
+	} //method
+  
+  	public ArrayList<StringPart> encodeString(String word){
+		ArrayList<StringPart> parts = new ArrayList<StringPart>(); //new arraylist
+		int len = word.length(); //length of word but will be subtracted
+		for(int i = 0; i < word.length(); i++) {
+			if(len != 0) { //if the length is not 0
+				parts.add(new Stringpart(findPart(word))); //it will find a matching part to word in masterString and than it will add that part to the arraylist
+				word = word.substring(new StringPart(findPart(word)).getLength()); //cuts off the proccessed subtring from the begining of word
+				len--; //substracts one by length
+			} else {//otherwise
+				return parts; //return the arraylust
+			}//else
+		}//for
+	}//method
