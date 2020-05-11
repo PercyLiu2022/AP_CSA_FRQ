@@ -1,0 +1,34 @@
+	import java.util.List;
+
+  public static int totalLetters(List<String> wordList) {
+		int total = 0; //adds the sizes together
+		for(int i = 0; i < wordList.size(); i++) { //loops through entire for loop
+			total = total + wordList.get(i).length(); //find the length of the Strning of index i of wordList parameter
+		}//for
+		return total; //returns the total letters of arrayList	
+	}//method
+	
+	public static int basicGapWidth(List<String> wordList, int formattedLen) {
+		int leftOver = formattedLen - totalLetters(wordList); //left over of spaces
+		int spaces = wordList.size() - 1; //number of spaces it has in the array 
+		
+		int basicGap = leftOver / spaces;  //will be an int, and round down
+		return basicGap; //returns the basic gap width
+	}//method
+	
+	public static int leftoverSpaces(List<String> wordList, int formattedLen) 
+	{ /* not shown */ }
+	
+	public static String format(List<String> wordList, int formattedLen) {
+		String formatted = wordList.get(0); //formatted has the wordList 0 already in it
+		int leftOver = leftoverSpaces(wordList, formattedLen); 
+		for(int i = 1; i < wordList.size(); i++) { //starts at index 1
+			if(leftoverSpaces(wordList, formattedLen) != 0 ) { //if there is spaceleft over and its not 0
+				formatted = formatted + basicGapWidth(wordList, formattedLen) + " " + wordList.get(i); //add an extra " " to the String
+				leftOver--; //minus one by leftOver because 1 space was used
+			} else { //otherwise
+				formatted = formatted + basicGapWidth(wordList, formattedLen) + wordList.get(i); //formatted doesn't add an extra " " to the String
+			}//else
+		}// for
+		return formatted; //returns the formatted string 
+	}//method
