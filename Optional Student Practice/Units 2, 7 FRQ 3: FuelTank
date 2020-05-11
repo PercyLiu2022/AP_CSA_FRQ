@@ -1,0 +1,30 @@
+	public int nextTankToFill(int threshhold) {
+		int minIndex = 0; //finds minIndex
+		for(int i = 1; i < tanks.size(); i++) {
+			if(tanks.get(i).getFuelLevel() < tanks.get(minIndex).getFuelLevel()) { //if tankt's fule level at i is smaller than tanks fuel level at minIndex
+				minIndex = i; //change minIndex to i
+			}//if
+		}//loop
+		if(minIndex <= threshhold) { //if min is smaller or equal to thresshold
+			return minIndex; //return min 
+		} else { //otherwise
+			return filler.getCurrentIndex(); //return the location of the filler
+		}
+	}//method
+	
+	public void moveToLocation(int locIndex) {
+		if(nextTankToFill(locIndex) == locIndex) { //if location of filler is rqual to the next to tank
+			return; //nothing happens, it stops the method
+		}//if
+		
+		if((nextTankToFill(locIndex) < locIndex && filler.isFacingRight() == true) ||  //if next tank is smaller than location AND filler is facing right
+				(nextTankToFill(locIndex) > locIndex && filler.isFacingRight() == false)) { //if next tank is greater than location AND filler is not facing right
+			filler.changeDirection();//change the direction
+			filler.moveForward(Math.abs(locIndex - filler.getCurrentIndex()));//move forward
+		}//if
+		
+		if((nextTankToFill(locIndex) > locIndex && filler.isFacingRight() == true) || //if next tank is greater than location AND filler is facing right
+			(nextTankToFill(locIndex) < locIndex && filler.isFacingRight() == false)) {//if next tank is smaller than location AND filler is not facing right
+			filler.moveForward(Math.abs(locIndex - filler.getCurrentIndex())); //move forward
+		}//if
+	}//method
