@@ -1,0 +1,29 @@
+	private ArrayList<ScoreInfo> scoreList;
+	
+	public boolean record(int score) {
+		boolean contain = false;
+		int index = 0;
+		for(int i = 0; i < scoreList.size(); i++) {
+			if(scoreList.get(i).getFrequency() == score) {
+				scoreList.get(i).increment();
+				contain = true;
+			}//if
+		}//for
+		
+		if(contain == false) {
+			for(int j = 0; j < scoreList.size(); i++) {
+				if(scoreList.get(i).getScore() > score) {
+					scoreList.add(j, new ScoreInfo(score));
+					return true; //stops the method
+				}//if
+			}//for
+		} else {
+			return false;
+		}
+	}//method
+	
+	public void recordScores(int[] stuScores) {
+		for(int i = 0; i < stuScores.length; i++) {
+			record(stuScores[i]);
+		}
+	}
