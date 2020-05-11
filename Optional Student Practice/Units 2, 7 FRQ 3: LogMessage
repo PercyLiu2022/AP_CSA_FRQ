@@ -1,0 +1,46 @@
+	private String description;
+	private String machineID;
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public String getMachineID() {
+		return machineID;
+	}
+
+	public LogMessage(String message) {
+		int ofIndex = message.indexOf(":"); //where ":" is located
+		this.machineID = message.substring(0, ofIndex); //machine is from 0 to the ":"
+		this.description = message.substring(ofIndex + 1); //description is from the ":" (exclusive) to end
+	}
+	
+	public boolean containsWord(String keyword) {
+		int index = description.indexOf(keyword);
+		int len = keyword.length();
+		
+		if(index == -1) { //if index is -1
+			return false; //return false
+		}
+		
+		if(description.contains(keyword) && ( //if description contains the keyword
+				(description.startsWith(keyword) || description.substring(index - 1, index) == " ") || //AND space before or starts with keyword 
+						(description.endsWith(keyword) || description.substring(index + len, index + len +1 ) == " "))) {  //OR space after of ends with keyword
+			return true; //return true
+		} else { //otherwise
+			return false; //return false
+		}//else
+	}//method
+	
+	private List<LogMessage> messageList;
+	public List<LogMessage> removeMessages(String keyword){
+		ArrayList<LogMessage> newList = new ArrayList<LogMessage>(); //new array to store the deleted 
+		for(int i = 0; i < messageList.size(); i++) { //loops through enture message list 
+			if(messageList.get(i).containsWord(keyword) == false) { //if messageList at i's doesn't contain the word
+				newList.add(messageList.get(i)); //add removed message to newList
+				messageList.remove(i); //remove i in messageList
+				i--; //go back 1
+			}//if
+		}//for
+		return newList; //return the removed stuff
+	}//method
