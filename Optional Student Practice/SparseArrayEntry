@@ -1,0 +1,10 @@
+	public int getValueAt(int row, int col) {//doesn't make sense if you think about it, but when you read through the text, you can figure out the code
+		for(int i = 0; i < entries.size(); i++) { //
+			if(entries.get(i).getRow() == row && entries.get(i).getCol() == col) { //if row at i in entries is equal to row AND if col at i in entries is equal to col
+				return entries.get(i).getValue(); //returns the value at i
+			}//if
+		}//for
+		return 0; //nothing is found
+	}//method
+  
+  //don't understand B
