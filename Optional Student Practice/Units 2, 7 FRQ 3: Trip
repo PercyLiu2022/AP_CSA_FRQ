@@ -1,0 +1,12 @@
+	public int getDuration() {
+		if(flights.size() == 0) { //if the array has nothing in it
+			return 0; //return 0
+		} else { //otherwise
+			Time start = flights.get(0).getDepartureTime(); //the departure of flight at 0  is start
+			Time end = flights.get(flights.size() - 1).getArrivalTime(); //the arrival of flight at last element is end
+			return start.minutesUntil(end); //return the minutes between those two
+		} //else
+	} //for
+  
+  //b 
+  Not sure, I gave up, too much work xD
