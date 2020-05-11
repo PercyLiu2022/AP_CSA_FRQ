@@ -1,3 +1,5 @@
+import java.util.List;
+
 	public static String scrambleWord(String word) {
 		String newWord = ""; //newWord to add chars
 		for(int i = 0; i < word.length()-1; i++) {
@@ -15,4 +17,13 @@
 		return newWord; //return the newWord
 	}//method
 	
-	
+	public static void scrambleOrRemove(List<String> wordList) {
+		for(int i = 0; i < wordList.size(); i++) { 
+			if(wordList.get(i) == scrambleWord(wordList.get(i))) { //if wordList after it got scrambled still is the same
+				wordList.remove(i); //remove i
+				i--; //go back 1
+			} else { //if it changed
+				wordList.set(i,  scrambleWord(wordList.get(i))); //set i to the scramble word
+			}//else
+		}//for
+	}//method
