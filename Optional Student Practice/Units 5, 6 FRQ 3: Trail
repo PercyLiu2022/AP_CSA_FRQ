@@ -1,0 +1,23 @@
+	public boolean isLevelTrailSegment(int start, int end) {
+			int maxSoFar = markers[0]; //the min value of marks
+			int minSoFar = markers[0]; //the max value of marks
+		for(int i = start; i <= end; i++) {//starts at start and ends at end inclusive
+			if(markers[i] > maxSoFar){ //finds max value
+	            maxSoFar = markers[i]; //replaces maxSoFar with new max
+	        }//if
+	        if(markers[i] < minSoFar){ //finds min value
+	            minSoFar = markers[i]; //replaces minSoFar with new min
+	        }//if
+		}//for
+		return Math.abs((maxSoFar - minSoFar)) <= 10; //if max minus min is less than or equal to 10
+	}
+	
+	public boolean isDifficult() {
+		int count = 0; //counts how many changes are greater than 30
+		for(int i = 0; i < markers.length; i++) { //loops through entire loop 
+			if(Math.abs( markers[i] + markers[i+1] ) > 30) { //adds i with i+1 and sees if its larger than 30
+				count++;//adss 1 to count if true
+			}//if
+		}//for
+		return count >= 3; //return false if count is less than 3 otherwise true
+	}//method
