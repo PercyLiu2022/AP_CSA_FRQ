@@ -1,0 +1,26 @@
+	public TokenPass(int playerCount) {
+		this.board = new int[playerCount]; //initialize board
+		for(int i = 0; i < board.length; i++) { //loops through entire board size to fill numbers at index's
+			board[i] = (int) ((Math.random() * ((10 - 1) + 1)) + 1); //random numbers between 1-10
+		}//for
+		this.currentPlayer = (int) ((Math.random() * (((playerCount - 1) - 0) + 1)) + 0); //random number between size of playercount and 0
+	}//method
+	
+	public void distributeCurrentPlayerTokens() {
+		int total = board[currentPlayer]; //total amount of tokens currentPlayer has
+		board[currentPlayer] = 0; //make currentplayer's index 0
+		for(int i = currentPlayer + 1; i < board.length; i++) { //loop starts at currentPlayer + 1 
+			if(total != 0) { //if total is not equal to 0
+				board[i]++; //add 1 to board at i
+				total--; //subtract 1 to total
+			}//if
+			if(i == board.length - 1 && total != 0) { //if i is at the end of the loop
+				i = 0; //start at 0 again
+				board[i]++; //add board at 0 1
+				total--; //subtract 1 from total
+			}//if
+			if(total == 0) { //if total is at 0
+				return; //stop method
+			}//if
+		}//for
+	}//method
