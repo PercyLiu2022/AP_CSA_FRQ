@@ -1,0 +1,19 @@
+	public int getTotalBoxes() {
+		int boxes = 0; //counts how many boxes
+		for(int i = 0; i < orders.size(); i++) { //loops through entire oreders array
+			boxes += orders.get(i).getNumBoxes(); //adds boxes at i to boxes
+		}//for
+		return boxes; //returns amount of boxes
+	}//method
+	
+	public int removeVariety(String cookieVar) {
+		int counter = 0; //counts cookie boxes that were removed
+		for(int i = 0; i < orders.size(); i++) { //for loop that loops through orders
+			if(orders.get(i).getVariety().equals(cookieVar)) { //if variety found
+				counter += orders.get(i).getNumBoxes(); //adds box's that were about to be removed
+				orders.remove(i); //remove orders at i
+				i--; //go back 1
+			}//if
+		}//for
+		return getTotalBoxes() - counter;
+	}//method
