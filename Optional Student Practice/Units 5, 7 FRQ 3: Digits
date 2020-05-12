@@ -1,0 +1,26 @@
+	public Digits(int num) {
+		this.digitList = new ArrayList<Integer>(); //initualize private arrayList to add
+		int myNum = num; //create a new variable to maipulate
+		if(myNum == 0) {//if number is 0
+			digitList.add(0); //add 0
+		}//if
+		
+		while(myNum > 0) {
+			int digit = myNum % 10; //get last number
+			digitList.add(digit);//add last number
+			myNum /= 10; //remove the last number of num
+		}//while
+	}//method
+	
+	public booean isStricltyIncreasing() {
+		if(digitList.size() == 1) { //if size of array is 1
+			return true; //return true
+		}//if
+		int count = 0;//counts how many times its true
+		for(int i = 0; i < digitList.size()-1; i++) { //loop that runs through entire digitList
+			if(digitList.get(i) < digitList.get(i+1)) { //if i is smaller than i+1 
+				count++; //add 1 to count
+			}//if
+		}//for
+		return count == digitList.size()-1; //returns true or false
+	}//method
