@@ -1,0 +1,20 @@
+public WordPairList(String[] words) { //contructor - no return
+			this.allPairs = new ArrayList<WordPair>(); //inisualize arraylist
+			for(int i = 0; i < words.length-1; i++) { //loops through entire word list -1
+				for(int j = i + 1; i < words.length; i++) { //loops from i+1 to end of word list
+					String first = words[i];//first is word at i
+					String second = words[j];//second is word at j
+					allPairs.add(new WordPair(first, second)); //add a new WordPair 
+				}//inner
+			}//outer
+		}//method
+		
+		public int numMatches() {
+			int count = 0;//counts how many duplicates
+			for(int i = 0 ; i < allPairs.size(); i++) {//loops through entire allPair list
+				if(allPairs.get(i).getFirst().equals(allPairs.get(i).getSecond())) { //if allPair's first at i == to allPair second at i
+					count++;//add 1 to count
+				}//if
+			}//for
+			return count; //return the count
+		}//method
