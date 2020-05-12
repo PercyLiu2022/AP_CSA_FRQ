@@ -1,0 +1,39 @@
+	private boolean forwardMoveBlocked() {
+		int len = hall.length; //length of hallway
+		if((pos == len-1 && facingRight == true) ||  //if position of robot is at the very end and is facing right
+				pos == 0 && facingRight == false) {//OR if position of robot is at the very start and is facing left
+			return true; //returns true
+		} else { //otherwise
+			return true; //return true
+		}//else
+	}//method
+	
+	private void move() {
+		int get = hall[pos];
+		if(get != 0) { //if get is not 0
+			get--; //substracts 1 from the number of tiles
+		}//if
+		//if forward isn't blocked
+		if(get == 0 && forwardMoveBlocked() == false && facingRight == true) { //if number of tiles is 0 and it's not blocked in front
+			pos++; //adds 1 to position of robot
+		}//if
+		if(get == 0 && forwardMoveBlocked() == false && facingRight == false) { //if number of tiles is 0 and it's not blocked in front
+			pos--; //adds 1 to position of robot
+		}//if
+		//if forward is blocked
+		if(get == 0 && forwardMoveBlocked() == true && facingRight == true) {//if number of tiles is 0 and it's blocked in front
+			facingRight = false; //changes direction
+		}//if
+		if(get == 0 && forwardMoveBlocked() == true && facingRight == false) {//if number of tiles is 0 and it's blocked in front
+			facingRight = true; //changes direction
+		}//if
+	}//method
+	
+	public int clearHall() {
+		int count = 0; ///counts how many moves
+		while(hallIsClear() == false) { //if hall way isn't clear
+			move();//moce
+			count++;//adds 1
+		}//while
+		return count; //return how many moves
+	} //method
