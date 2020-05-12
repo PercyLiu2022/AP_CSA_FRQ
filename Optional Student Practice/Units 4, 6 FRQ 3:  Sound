@@ -1,0 +1,32 @@
+	public int limitAmplitude(int limit) {
+		int count = 0;
+		for(int i = 0; i < samples.length; i++) {
+			if( limit < samples[i] && limit < 0 ) {
+				samples[i] = limit;
+				count++;
+			}else if( limit > samples[i] && limit > 0 ) {
+				samples[i] = -limit;
+				count++;
+			}//if
+		}//loop
+		return count;
+	}//method
+	
+	public void trimSilenceFromBeginning() {
+		int sound = 0; //adds how many 0's there are at the beginning
+		for(int i = 0; i < newSamples.length; i++) {
+			if(samples[i] == 0) { //if samples at i equal to 0
+				sound++; //add 1 to sound
+			} else {
+				break; //stops loop
+			}//else
+		}//loop
+		
+		int[] newSamples = new int[samples.length - sound]; //size is the same - the 0's
+		int e = 0; //adds 1 when looping to add to new array
+		for(int j = sound; j < samples.length; j++) { //starts at sound
+			newSamples[e] = samples[sound]; //adds sound to list
+			e++; //add 1 to e
+		}//for
+		samples = newSamples; //switch 
+	}//method
