@@ -1,0 +1,35 @@
+	private int getChargingCost(int startHour, int chargeTime) {
+		int total = 0; //adds cost
+		int charge = chargeTime; //gets subtracted
+		for(int i = startHour; i < rateTable.length; i++) {
+			if(i != 23 && i != 0 && charge != 0) { //if i isn't 23 AND i isn't 0 AND charge isn't 0
+				total += rateTable[i]; //add i to total
+				charge--; //subtract from charge
+			}//if
+			if(i == 23 && charge != 0) { //if i is 23 AND charge isn't 0
+				total += rateTable[i]; //add i to total
+				charge--; //subtract from charge
+				i = 0; //go back to 0 if loop is at the end
+				
+			}//if
+			if(i == 0 && charge != 0) { //if i is 0 AND charge isn't 0
+				total += rateTable[i]; //add i to total
+				charge--; //subtract from charge
+			}//if
+			if(charge == 0) { //if charge is 0
+				return total; //return the total
+			}//if
+		}//for
+	}//method
+	
+	public int getChargeStartTime(int chargeTime) {
+		int minSoFar = getChargingCost(0, chargeTime); //min so far is at 0 to the chargeTime
+		int index = 0; //right now smallest total is at index 0 
+		for(int i = 1; i < rateTable.length; i++) {
+			if(getChargingCost(i, chargeTime) < minSoFar) { //if total from i to chargeTime is less than min so far's total
+				minSoFar = getChargingCost(i, chargeTime); //change minSoFar to the new smallest charge time
+				index = i; //get the index of smallest
+			}//if
+		}//loop
+		return index; //return the smallest value's index
+	}//method
