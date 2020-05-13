@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class Gizmo3 {
+	private ArrayList<Gizmo> purchases;
+	
+	public int countElectronicsByMaker(String maker) {
+		int counter = 0;
+		for(int i = 0; i < purchases.size(); i++) {
+			if(purchases.get(i).getMaker().equals(maker) && purchases.get(i).isElectronic() == true) {
+				counter++;
+			}
+		}
+		
+		return counter;
+	}//method
+	
+	public boolean hasAdjacentEqualPair() {
+		if(purchases.size() < 2) {
+			return false;
+		}
+		
+		for(int i = 0; i < purchases.size()-1; i++) {
+			if(purchases.get(i).equals(purchases.get(i+1))) {
+				return true;
+			}
+		}//for
+		
+		return false;
+	}//method
+	
+	/*
+	 * public Gizmo getCheapestGizmoByMaker(String maker) - create a public method that has a String as a parameter in the OnlinePurchasesManager class
+	 * private int price; - create an instance variable in the Gizmo class to store in an integer, so outside classes can't have manipulate it
+	 * public int getPrice(); - create a getter method in the Gizmo class for the price. Thie will  allow other classes to access the price integer
+	 * this.price = price; AND int price - change the contructor by adding a new parameter "int price" and to set this.price equal to the parameter price.
+	 * The method would include a simple algarithm of a loop that finds the minimum price and return the Gizmo object with the minumum price
+	 */
+}
