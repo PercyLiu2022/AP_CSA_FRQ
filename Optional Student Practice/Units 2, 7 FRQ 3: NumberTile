@@ -20,13 +20,13 @@ private int getIndexForIt(NumberTile tile) { //returns index where it can fit (c
 	}//method
 	
 	public boolean insertTile(NumberTile tile) {
-		for(int i = 0; i < 4; i++) {
+		for(int i = 0; i < 3; i++) {
 			if(getIndexForIt(tile) != -1) { //if index of time is not -1
 				board.add(getIndexForIt(tile), tile); //add tile at index
 				return true;//return true
 			} else { //otherwise
 				tile.rotate(); //rotate
 			}//else		
-			return false;
 		}//loop
+		return false;
 	}//method
